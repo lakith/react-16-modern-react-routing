@@ -2,12 +2,13 @@ import React,{Component,Suspense} from 'react';
 import{Route,NavLink,Switch} from 'react-router-dom'
 
 // import Users from '../Users/Users';
-import Welcome from '../Courses/Courses';
-// import Courses from '../welcome/Welcome';
+import Welcome from '../welcome/Welcome';
 import './handler.css'
+import Courses from '../Courses/Courses'
+import Course from '../Course/Course'
 
 const Users = React.lazy(()=>import('../Users/Users'));
-const Courses = React.lazy(()=>import('../Courses/Courses'));
+//const Courses = React.lazy(()=>import('../Courses/Courses'));
 
 class Handler extends Component{
 
@@ -62,15 +63,17 @@ class Handler extends Component{
                                     </Suspense>
                                 )
                             }}  />
-                    <Route path="/courses" exact 
+                    {/* <Route path="/courses" exact 
                            render={()=>{
                                return(
                                    <Suspense fallback={(<div>Loading...</div>)}>
-                                   <Courses />
+                                   <Courses {...this.props} />
                                    </Suspense>
                                )
                            }}
-                    />
+                    />  */}
+                    <Route path="/courses" exact component={Courses}  />
+                    <Route path='/courses/:id' strict component={Course}/>
                     <Route path="/" exact component={Welcome}  />
                 </Switch>
             </div>
